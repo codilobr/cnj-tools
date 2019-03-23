@@ -1,17 +1,13 @@
 pipelines:
   default:
     - step:
-      name: "Testing Application"
-      image: node:10-alpine
-      script:
-        - npm install
-        - npm run test
+        name: "Testing Application"
+        image: node:10-alpine
+        script:
+          - npm install
+          - npm run test
     - step:
-      script:
-        - pipe: atlassian/npm-publish:0.2.1
-          variables:
-            NPM_TOKEN: $NPM_TOKEN
-
-
-
-
+        script:
+          - pipe: atlassian/npm-publish:0.2.1
+            variables:
+              NPM_TOKEN: $NPM_TOKEN
