@@ -1,13 +1,29 @@
 pipelines:
-  default:
-    - step:
+  default: # DEFAULT
+    - step: # STEP ONE
         name: "Testing Application"
         image: node:10-alpine
         script:
           - npm install
           - npm run test
-    - step:
-        script:
-          - pipe: atlassian/npm-publish:0.2.1
-            variables:
-              NPM_TOKEN: $NPM_TOKEN
+  branches: # BRANCHES FLOW
+    master: # MASTER
+      - step: # STEP ONE
+          name: "Testing Application"
+          image: node:10-alpine
+          script:
+            - npm install
+            - npm run test
+      - step:
+          name: "Building and Pushing Package to NPM"
+          script:
+            - pipe: atlassian/npm-publish:0.2.1
+              variables:
+                NPM_TOKEN: $NPM_TOKEN
+    release/staging: # RELEASE/STAGING
+      - step: # STEP ONE
+          name: "Testing Application"
+          image: node:10-alpine
+          script:
+            - npm install
+            - npm run test
