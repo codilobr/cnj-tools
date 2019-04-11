@@ -37,6 +37,9 @@ function genValidator(NNNNNNN, AAAA, J, TR, OOOO) {
 }
 
 function split(cnj) {
+  if (!cnj) {
+    return ['0000000', '00', '0000', '0', '00', '0000'];
+  }
   const notNumber = /^0+|[^\d]+/g;
   const cnjRegExp = /(\d{1,7})-?(\d{1,2}).?(\d{1,4}).?(\d{1}).?(\d{1,2}).?(\d{1,4})/;
   const splitted = cnj.split(notNumber);
