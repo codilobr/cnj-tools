@@ -1,11 +1,13 @@
 {
   "name": "cnj-tools",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Conjunto de métodos para manipulação da numeração única do CNJ",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha tests/**/*.spec.js --exit",
-    "test:tdd": "./node_modules/.bin/mocha tests/**/*.spec.js --watch"
+    "test:tdd": "./node_modules/.bin/mocha tests/**/*.spec.js --watch",
+    "prepare": "./node_modules/.bin/npm-auto-version",
+    "postpublish": "git push origin --tags"
   },
   "repository": {
     "type": "git",
@@ -19,6 +21,7 @@
     "eslint": "^5.15.3",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0",
-    "mocha": "^6.0.2"
+    "mocha": "^6.0.2",
+    "npm-auto-version": "^1.0.0"
   }
 }

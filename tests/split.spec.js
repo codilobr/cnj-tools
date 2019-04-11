@@ -66,4 +66,11 @@ describe('split', () => {
       expect(splited).to.deep.equal(cnjArray);
     });
   });
+  context('null', () => {
+    it('null', () => {
+      const cnjArray = ['0000000', '00', '0000', '0', '00', '0000'];
+      const splited = split();
+      expect(splited).to.deep.equal(cnjArray);
+    });
+  });
 });

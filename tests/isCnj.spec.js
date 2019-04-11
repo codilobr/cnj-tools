@@ -138,5 +138,9 @@ describe('isCnj', () => {
       const valid = isCnj('999999/SP');
       expect(valid).to.equal(false);
     });
+    it('null isCnj', () => {
+      const valid = isCnj();
+      expect(valid).to.equal(false);
+    });
   });
 });
