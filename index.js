@@ -99,6 +99,22 @@ function originCnj(number) {
   return false;
 }
 
+
+function fakeCnj() {
+  const Js = Object.keys(courts);
+  const J = Js[Math.floor(Math.random() * Js.length)];
+  const TRs = Object.keys(courts[J]);
+  const TR = TRs[Math.floor(Math.random() * TRs.length)];
+  const yearLength = Math.floor((new Date().getFullYear() - 1995) / 1) + 1;
+  const AAAAs = Array(yearLength).fill().map((_, idx) => 1995 + (idx * 1));
+  const AAAA = AAAAs[Math.floor(Math.random() * AAAAs.length)];
+  const OOOO = Math.random() < 0.5 ? '0000' : '0001';
+  const NNNNNNN = Math.round(Math.random() * 1000000);
+  const nup = genValidator(NNNNNNN, AAAA, J, TR, OOOO);
+  const origin = courts[J][TR];
+  return { nup, origin };
+}
+
 function clean(cnj) {
   const splited = split(cnj);
   const cleaned = splited.join('');
@@ -117,6 +133,7 @@ module.exports = {
   split,
   isCnj,
   originCnj,
+  fakeCnj,
   clean,
   mountCnj,
 };
