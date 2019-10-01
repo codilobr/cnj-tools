@@ -1,6 +1,6 @@
 {
   "name": "cnj-tools",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Conjunto de métodos para manipulação da numeração única do CNJ",
   "main": "index.js",
   "scripts": {
