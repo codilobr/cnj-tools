@@ -1,6 +1,6 @@
 const courts = require('./data/courts');
 
-function checkValidator(NNNNNNN, DD, AAAA, J, TR, OOOO) {
+function checkCnjValidator(NNNNNNN, DD, AAAA, J, TR, OOOO) {
   const nnnnnnn = `${NNNNNNN}`.padStart(7, '0');
   const dd = `${DD}`.padStart(2, '0');
   const aaaa = `${AAAA}`.padStart(4, '0');
@@ -15,7 +15,7 @@ function checkValidator(NNNNNNN, DD, AAAA, J, TR, OOOO) {
   return ((value2 % 97) === 1);
 }
 
-function genValidator(NNNNNNN, AAAA, J, TR, OOOO) {
+function genCnjValidator(NNNNNNN, AAAA, J, TR, OOOO) {
   const nnnnnnn = `${NNNNNNN}`.padStart(7, '0');
   const aaaa = `${AAAA}`.padStart(4, '0');
   const tr = `${TR}`.padStart(2, '0');
@@ -36,7 +36,7 @@ function genValidator(NNNNNNN, AAAA, J, TR, OOOO) {
   return cnj;
 }
 
-function split(cnj) {
+function splitCnj(cnj) {
   if (!cnj) {
     return ['0000000', '00', '0000', '0', '00', '0000'];
   }
@@ -81,22 +81,27 @@ function split(cnj) {
 }
 
 // Utilizar para verificar se o número cnj é válido sem o digito verificador
-function isCnj(number) {
-  const cnj = split(number);
-  return checkValidator(...cnj);
-}
-
-function originCnj(number) {
-  const cnj = split(number);
-  const verified = checkValidator(...cnj);
+function validCnj(number) {
+  const cnj = splitCnj(number);
+  const verified = checkCnjValidator(...cnj);
   if (!verified) {
     return verified;
   }
   const [, , , J, TR] = cnj;
   if (courts[J] && courts[J][TR]) {
-    return courts[J][TR];
+    return true;
   }
   return false;
+}
+
+function originCnj(number) {
+  const valid = validCnj(number);
+  if (!valid) {
+    return false;
+  }
+  const cnj = splitCnj(number);
+  const [, , , J, TR] = cnj;
+  return courts[J][TR];
 }
 
 
@@ -110,30 +115,30 @@ function fakeCnj() {
   const AAAA = AAAAs[Math.floor(Math.random() * AAAAs.length)];
   const OOOO = Math.random() < 0.5 ? '0000' : '0001';
   const NNNNNNN = Math.round(Math.random() * 1000000);
-  const nup = genValidator(NNNNNNN, AAAA, J, TR, OOOO);
+  const nup = genCnjValidator(NNNNNNN, AAAA, J, TR, OOOO);
   const origin = courts[J][TR];
   return { nup, origin };
 }
 
-function clean(cnj) {
-  const splited = split(cnj);
+function cleanCnj(cnj) {
+  const splited = splitCnj(cnj);
   const cleaned = splited.join('');
   return cleaned;
 }
 
-function mountCnj(num) {
-  const a = split(num);
+function formatCnj(num) {
+  const a = splitCnj(num);
   const cnj = `${a[0]}-${a[1]}.${a[2]}.${a[3]}.${a[4]}.${a[5]}`;
   return cnj;
 }
 
 module.exports = {
-  checkValidator,
-  genValidator,
-  split,
-  isCnj,
+  checkCnjValidator,
+  genCnjValidator,
+  splitCnj,
+  validCnj,
   originCnj,
   fakeCnj,
-  clean,
-  mountCnj,
+  cleanCnj,
+  formatCnj,
 };
