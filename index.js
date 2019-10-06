@@ -105,7 +105,7 @@ function originCnj(number) {
 }
 
 
-function fakeCnj() {
+function fakeCnj(nnnnnnn, aaaa, j, tr, oooo) {
   const Js = Object.keys(courts);
   const J = Js[Math.floor(Math.random() * Js.length)];
   const TRs = Object.keys(courts[J]);
@@ -115,8 +115,8 @@ function fakeCnj() {
   const AAAA = AAAAs[Math.floor(Math.random() * AAAAs.length)];
   const OOOO = Math.random() < 0.5 ? '0000' : '0001';
   const NNNNNNN = Math.round(Math.random() * 1000000);
-  const nup = genCnjValidator(NNNNNNN, AAAA, J, TR, OOOO);
-  const origin = courts[J][TR];
+  const nup = genCnjValidator(nnnnnnn || NNNNNNN, aaaa || AAAA, j || J, tr || TR, oooo || OOOO);
+  const origin = courts[j || J][tr || TR];
   return { nup, origin };
 }
 
