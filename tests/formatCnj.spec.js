@@ -53,4 +53,10 @@ describe('formatCnj', () => {
       expect(cnj).to.deep.equal(mounted);
     });
   });
+  context('valid number 0051300-5.1997.5.07.0028', () => {
+    it('0051300-5.1997.5.07.0028', () => {
+      const mounted = formatCnj('0051300-5.1997.5.07.0028');
+      expect(mounted).to.equal('0051300-05.1997.5.07.0028');
+    });
+  });
 });
