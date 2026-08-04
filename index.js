@@ -42,7 +42,7 @@ function splitCnj(cnj) {
   }
   const notNumber = /^0+|[^\d]+/g;
   const cnjRegExp = /(\d{1,7})-?(\d{1,2}).?(\d{1,4}).?(\d{1}).?(\d{1,2}).?(\d{1,4})/;
-  const splitted = cnj.split(notNumber);
+  const splitted = cnj.split(notNumber).filter(Boolean);
 
   let NNNNNNN;
   let DD;

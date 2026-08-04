@@ -66,6 +66,13 @@ describe('split', () => {
       expect(splited).to.deep.equal(cnjArray);
     });
   });
+  context('valid number 0051300-5.1997.5.07.0028', () => {
+    it('0051300-5.1997.5.07.0028 array', () => {
+      const cnjArray = ['0051300', '05', '1997', '5', '07', '0028'];
+      const splited = splitCnj('0051300-5.1997.5.07.0028');
+      expect(splited).to.deep.equal(cnjArray);
+    });
+  });
   context('null', () => {
     it('null', () => {
       const cnjArray = ['0000000', '00', '0000', '0', '00', '0000'];

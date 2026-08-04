@@ -134,6 +134,10 @@ describe('validCnj', () => {
       const valid = validCnj('5000.822.53.2013.827.2706');
       expect(valid).to.equal(true);
     });
+    it('0051300-5.1997.5.07.0028 validCnj', () => {
+      const valid = validCnj('0051300-5.1997.5.07.0028');
+      expect(valid).to.equal(true);
+    });
     it('999999/SP validCnj', () => {
       const valid = validCnj('999999/SP');
       expect(valid).to.equal(false);
